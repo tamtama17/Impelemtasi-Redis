@@ -1,4 +1,12 @@
 # Impelemtasi Redis
+## Daftar Isi
+1. [Arsitektur](#1-arsitektur)
+2. [Instalasi](#2-instalasi)
+   2.1 [Instalasi Redis](#21-instalasi-redis)
+   2.2 [Konfigurasi](#22-konfigurasi)
+3. [Testing](#3-testing)
+4. [Failover](#4-failover)
+5. [Referensi](#5-referensi)
 ## 1. Arsitektur
 Kali ini kita akan membuat implementasi Redis cluster dengan 3 node, 1 node master dan 2 node slave. Spesifikasinya adalah sebagai berikut :   
 
@@ -111,7 +119,7 @@ redis-cli -h IP_Address ping
 ```
 Jika terhubung maka akan mendapat balasan `PONG` seperti ini :   
 ![gambar3](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar3.png)   
-### 3. Testing
+## 3. Testing
 Untuk mengecek informasi replikasi adalah dengan cara :
 ```sh
 redis-cli
@@ -120,7 +128,7 @@ info replication
 ![gambar4](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar4.png)   
 Sekarang kita cek apakah replikasi dapat bekerja dengan baik. Untuk testing kali ini kita akan melakukan `set key` pada master, jika bekerja dengan benar maka slave bisa mendapatkan value dari `set key` pada master dengan cara `get key` seperti ini :   
 ![gambar5](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar5.png)   
-### 4. Failover
+## 4. Failover
 Untuk mencoba failover pada redis kita akan mematikan node master redis. Untuk mematikan redis adalah dengan cara :
 ```sh
 kill -9 <process id>
@@ -135,3 +143,5 @@ redis-cli -p 6379 DEBUG SEGFAULT
 Ketika node master mati, maka otomatis salah satu slave akan menjadi master yang baru, dalam kasus ini rslave1 yang menjadi master baru.   
 ![gambar7](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar7.png)   
 Failover sukses dilakukan.
+### 5. Referensi
+- https://medium.com/@amila922/redis-sentinel-high-availability-everything-you-need-to-know-from-dev-to-prod-complete-guide-deb198e70ea6
