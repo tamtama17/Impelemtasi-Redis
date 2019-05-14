@@ -1,12 +1,12 @@
 # Impelemtasi Redis
 ## Daftar Isi
-1. [Arsitektur](#1-arsitektur)
-2. [Instalasi](#2-instalasi)
-   2.1 [Instalasi Redis](#21-instalasi-redis)
-   2.2 [Konfigurasi](#22-konfigurasi)
-3. [Testing](#3-testing)
-4. [Failover](#4-failover)
-5. [Referensi](#5-referensi)
+1. [Arsitektur](#1-arsitektur)   
+2. [Instalasi](#2-instalasi)   
+   2.1 [Instalasi Redis](#21-instalasi-redis)   
+   2.2 [Konfigurasi](#22-konfigurasi)   
+3. [Testing](#3-testing)   
+4. [Failover](#4-failover)   
+5. [Referensi](#5-referensi)   
 ## 1. Arsitektur
 Kali ini kita akan membuat implementasi Redis cluster dengan 3 node, 1 node master dan 2 node slave. Spesifikasinya adalah sebagai berikut :   
 
