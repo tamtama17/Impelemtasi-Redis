@@ -6,7 +6,8 @@ Kali ini kita akan membuat implementasi Redis cluster dengan 3 node, 1 node mast
 | --- | --- | --- | --- |
 | 1 | rmaster | 192.168.200.100 | master |
 | 2 | rslave1 | 192.168.200.101 | slave |
-| 3 | rslave2 | 192.168.200.102 | slave |
+| 3 | rslave2 | 192.168.200.102 | slave |   
+
 Yang akan dibuat pada Ubuntu 16.04 menggunakan vagrant dengan konfigurasi sebagai berikut :
 ```ruby
 Vagrant.configure("2") do |config|
@@ -84,7 +85,7 @@ Untuk konfigurasi `redis.conf` pada master dan slave hampir sama, hanya saja pad
   logfile "/home/redis-stable/redis.log" # tempat menyimpan file log
   ```
 Karena kita ingin membuat redis cluster, maka comment bind 127.0.0.1 agar bisa di listen oleh semua interface.   
-[gambar1](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar1.png)   
+![gambar1](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar1.png)   
 #### 2.2.2. Konfigurasi `sentinel.conf`
 Untuk konfigurasi `sentinel.conf` pada master dan slave sama persis, berikut konfigurasinya :
   ```sh
@@ -101,7 +102,7 @@ src/redis-server redis.conf &
 src/redis-server sentinel.conf --sentinel &
 ```
 Untuk mengecek apakah redis sudah berjalan ketikkan `ps -ef | grep redis`, jika redis sudah berjalan akan muncul seperti ini :   
-[gambar2](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar2.png)   
+![gambar2](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar2.png)   
 Untuk mengecek apakah setiap node sudah terhubung adalah dengan cara :
 ```sh
 redis-cli ping
@@ -109,16 +110,16 @@ redis-cli ping
 redis-cli -h IP_Address ping
 ```
 Jika terhubung maka akan mendapat balasan `PONG` seperti ini :   
-[gambar3](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar3.png)   
+![gambar3](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar3.png)   
 ### 3. Testing
 Untuk mengecek informasi replikasi adalah dengan cara :
 ```sh
 redis-cli
 info replication
 ```   
-[gambar4](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar4.png)   
+![gambar4](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar4.png)   
 Sekarang kita cek apakah replikasi dapat bekerja dengan baik. Untuk testing kali ini kita akan melakukan `set key` pada master, jika bekerja dengan benar maka slave bisa mendapatkan value dari `set key` pada master dengan cara `get key` seperti ini :   
-[gambar5](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar5.png)   
+![gambar5](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar5.png)   
 ### 4. Failover
 Untuk mencoba failover pada redis kita akan mematikan node master redis. Untuk mematikan redis adalah dengan cara :
 ```sh
