@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     node.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.name = "rmaster"
-      vb.memory = "2048"
+      vb.memory = "3072"
     end
   end
   (1..2).each do |i|

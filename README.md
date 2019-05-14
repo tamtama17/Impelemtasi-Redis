@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     node.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.name = "rmaster"
-      vb.memory = "2048"
+      vb.memory = "3072"
     end
   end
   (1..2).each do |i|
@@ -74,7 +74,7 @@ Untuk konfigurasi `redis.conf` pada master dan slave hampir sama, hanya saja pad
   protected-mode no
   port 6379
   dir .
-  logfile "/home/redis-stable/redis.log" # tempat menyimpan file log
+  logfile "/home/vagrant/redis-stable/redis.log" # tempat menyimpan file log
   ```
 - Slave
   ```sh
@@ -82,7 +82,7 @@ Untuk konfigurasi `redis.conf` pada master dan slave hampir sama, hanya saja pad
   port 6379
   dir .
   slaveof 192.168.200.100 # ip dari node master
-  logfile "/home/redis-stable/redis.log" # tempat menyimpan file log
+  logfile "/home/vagrant/redis-stable/redis.log" # tempat menyimpan file log
   ```
 Karena kita ingin membuat redis cluster, maka comment bind 127.0.0.1 agar bisa di listen oleh semua interface.   
 ![gambar1](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar1.png)   
@@ -130,4 +130,8 @@ pkill redis
 redis-cli -p 6379 DEBUG sleep 30
 # atau
 redis-cli -p 6379 DEBUG SEGFAULT
-```
+```   
+![gambar6](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar6.png)   
+Ketika node master mati, maka otomatis salah satu slave akan menjadi master yang baru, dalam kasus ini rslave1 yang menjadi master baru.   
+![gambar7](https://github.com/tamtama17/Impelemtasi-Redis/blob/master/gambar/gambar7.png)   
+Failover sukses dilakukan.
